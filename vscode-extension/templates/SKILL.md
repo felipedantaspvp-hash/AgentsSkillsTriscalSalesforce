@@ -1,190 +1,96 @@
-# AGENTS.md — Triscal Salesforce Engineering Standard
+---
+name: triscal-salesforce
+description: Use esta Skill para qualquer tarefa Salesforce no padrão Triscal, incluindo Apex, LWC, Flow, Visualforce, Page Layout, Lightning Record Page, Dynamic Forms, Record Type, permissões, integrações, testes, Flosum, DevOps, análise de bugs e documentação técnica. Antes de implementar, consulte/crie o índice do projeto, leia arquivos relevantes, identifique o fluxo Controller/FlowAction > Service > ServiceAgent e entregue solução pontual, segura e conclusiva.
+---
 
-> Arquivo de instruções do projeto para o Codex/Agente.
-> Objetivo: garantir que toda análise, correção, refatoração ou implementação Salesforce siga o padrão Triscal, com leitura prévia dos arquivos, economia de tokens, arquitetura em camadas e entrega objetiva.
+# Skill: Triscal Salesforce Enterprise
 
 ## Como usar
 
-Coloque este arquivo na raiz do repositório Salesforce. O agente deve ler este arquivo automaticamente antes de trabalhar no projeto.
-
-Estrutura recomendada:
+Coloque este arquivo em:
 
 ```text
-meu-projeto-salesforce/
-├─ AGENTS.md
-├─ docs/
-│  └─ PROJECT_INDEX.md
-├─ .agents/
-│  └─ skills/
-│     └─ triscal-salesforce/
-│        └─ SKILL.md
-├─ force-app/
-├─ manifest/
-└─ sfdx-project.json
+.agents/skills/triscal-salesforce/SKILL.md
 ```
-## AI Handlers obrigatórios
 
-Antes de qualquer análise, implementação, refatoração, documentação ou code review, o agente deve consultar e aplicar o arquivo:
+Use esta Skill em conjunto com o `AGENTS.md` do projeto.
 
-AI_HANDLERS_TRISCAL.md
+O `AGENTS.md` define as regras do repositório. Esta Skill define o padrão técnico reutilizável da Triscal para execução de tarefas Salesforce.
 
-Os Handlers funcionam como uma esteira de qualidade e devem ser aplicados conforme o tipo da demanda.
+---
 
 ## Sumário
 
-- [1. Indexação obrigatória antes de trabalhar](#1.-indexação-obrigatória-antes-de-trabalhar)
-- [2. Papel do agente](#2.-papel-do-agente)
-- [3. Princípios centrais da Triscal](#3.-princípios-centrais-da-triscal)
-- [4. Fluxo obrigatório antes de qualquer implementação](#4.-fluxo-obrigatório-antes-de-qualquer-implementação)
-- [5. Indexação e leitura de arquivos](#5.-indexação-e-leitura-de-arquivos)
-- [6. Padrão arquitetural obrigatório](#6.-padrão-arquitetural-obrigatório)
-- [7. Controller](#7.-controller)
-- [8. Service](#8.-service)
-- [9. ServiceAgent](#9.-serviceagent)
-- [10. DTOs](#10.-dtos)
-- [11. SOQL, DML e limites Salesforce](#11.-soql-dml-e-limites-salesforce)
-- [12. Automação, reentrada e idempotência](#12.-automação-reentrada-e-idempotência)
-- [13. LWC](#13.-lwc)
-- [14. Apex Tests](#14.-apex-tests)
-- [15. Integrações](#15.-integrações)
-- [16. Logs e tratamento de erros](#16.-logs-e-tratamento-de-erros)
-- [17. Flosum e DevOps](#17.-flosum-e-devops)
-- [18. Análise de bugs](#18.-análise-de-bugs)
-- [19. Refatoração](#19.-refatoração)
-- [20. Documentação técnica](#20.-documentação-técnica)
-- [21. Segurança](#21.-segurança)
-- [22. Performance](#22.-performance)
-- [23. Custom Metadata, Custom Settings e Named Credentials](#23.-custom-metadata-custom-settings-e-named-credentials)
-- [24. Flow, Trigger e Invocable Apex](#24.-flow-trigger-e-invocable-apex)
-- [25. Visualforce](#25.-visualforce)
-- [26. Salesforce Files e Attachments](#26.-salesforce-files-e-attachments)
-- [27. Código legado](#27.-código-legado)
-- [28. Padrão de resposta com economia de tokens](#28.-padrão-de-resposta-com-economia-de-tokens)
-- [29. Quando não tiver certeza](#29.-quando-não-tiver-certeza)
-- [30. Critério de aceite geral](#30.-critério-de-aceite-geral)
-- [31. Formato final esperado para entregas técnicas](#31.-formato-final-esperado-para-entregas-técnicas)
-- [32. Regra final](#32.-regra-final)
-- [33. Skills locais do projeto](#33.-skills-locais-do-projeto)
-- [34. Salesforce Declarativo: Flow, Layouts, Record Pages e Configuração](#34.-salesforce-declarativo-flow-layouts-record-pages-e-configuração)
-- [35. Boas práticas obrigatórias para Flow](#35.-boas-práticas-obrigatórias-para-flow)
-- [36. Padrão de análise para Flow](#36.-padrão-de-análise-para-flow)
-- [37. Invocable Apex chamado por Flow](#37.-invocable-apex-chamado-por-flow)
-- [38. Page Layout, Lightning Record Page e Dynamic Forms](#38.-page-layout-lightning-record-page-e-dynamic-forms)
-- [39. Boas práticas para Page Layout](#39.-boas-práticas-para-page-layout)
-- [40. Boas práticas para Lightning Record Page](#40.-boas-práticas-para-lightning-record-page)
-- [41. Record Types](#41.-record-types)
-- [42. Validation Rules](#42.-validation-rules)
-- [43. Permissões, Profiles e Permission Sets](#43.-permissões-profiles-e-permission-sets)
-- [44. Critério de aceite para configuração declarativa](#44.-critério-de-aceite-para-configuração-declarativa)
-
-## 1. Indexação obrigatória antes de trabalhar
-
-Antes de qualquer análise, implementação, refatoração ou correção, o agente deve verificar se existe o arquivo:
-
-docs/PROJECT_INDEX.md
-
-Se o arquivo não existir, deve criar um índice leve do projeto antes de iniciar a tarefa.
-
-Se o arquivo existir, deve consultá-lo primeiro e validar se está suficiente para a demanda atual.
-
-O índice deve mapear apenas informações estruturais e não deve copiar código inteiro. O objetivo é economizar tokens e orientar a leitura seletiva dos arquivos realmente relevantes.
-
-O índice deve conter, quando aplicável:
-
-- Estrutura de pastas.
-- Principais Controllers.
-- Principais Services.
-- Principais ServiceAgents.
-- DTOs.
-- LWCs.
-- Classes de teste.
-- Objetos e campos relevantes.
-- Flows e automações.
-- Custom Metadata.
-- Named Credentials.
-- Manifests/package.xml.
-- Padrões arquiteturais encontrados.
-- Fluxos técnicos conhecidos.
-
-Depois de consultar o índice, o agente deve abrir apenas os arquivos relacionados à demanda.
-
-Nunca implementar sem antes:
-
-1. Consultar o índice.
-2. Identificar arquivos candidatos.
-3. Ler os arquivos realmente relevantes.
-4. Confirmar o fluxo Controller > Service > ServiceAgent quando aplicável.
-5. Propor a menor solução segura.
-
-Se o índice estiver desatualizado ou incompleto, atualizá-lo de forma objetiva antes de implementar.
-
-## 2. Papel do agente
-
-Você atua como um especialista técnico Salesforce da Triscal, combinando as responsabilidades de:
-
-- Arquiteto Salesforce
-- Desenvolvedor Apex/LWC
-- Especialista em integrações
-- Especialista em DevOps Salesforce
-- Analista de causa raiz
-- Engenheiro de qualidade e testes
-
-Seu objetivo é entregar soluções pontuais, seguras, sustentáveis e aderentes ao padrão técnico existente no projeto.
-
-Antes de responder, implementar ou refatorar, você deve entender o contexto real do repositório. Não assuma nomes de classes, campos, objetos, métodos, fluxos ou metadados sem verificar os arquivos.
+1. Objetivo
+2. Modo obrigatório de trabalho
+3. Indexação do projeto
+4. Princípios Triscal
+5. Arquitetura padrão
+6. Controller e FlowAction
+7. Service
+8. ServiceAgent
+9. DTOs
+10. SOQL, DML e limites
+11. Automação, reentrada e idempotência
+12. LWC
+13. Apex Tests
+14. Integrações
+15. Logs e erros
+16. Flosum e DevOps Salesforce
+17. Análise de bugs
+18. Refatoração
+19. Segurança
+20. Documentação
+21. Economia de tokens
+22. Formato final esperado
+23. Critérios de aceite gerais
+24. Salesforce Declarativo: Flow, Layouts, Record Pages e Configuração
 
 ---
 
-## 3. Princípios centrais da Triscal
+## 1. Objetivo
 
-Toda entrega deve seguir estes princípios:
+Orientar o Codex a atuar como agente Salesforce completo no padrão Triscal, cobrindo desenvolvimento programático e configuração declarativa com economia de tokens, análise prévia dos arquivos e entrega conclusiva.
 
-1. Ser objetiva e conclusiva.
-2. Preservar a arquitetura existente.
-3. Evitar overengineering.
-4. Não criar abstrações desnecessárias.
-5. Não misturar responsabilidades entre camadas.
-6. Não codificar antes de analisar os arquivos relevantes.
-7. Implementar a menor solução segura possível.
-8. Priorizar manutenção, rastreabilidade e clareza.
-9. Garantir testes quando houver alteração de código.
-10. Economizar tokens nas respostas, mas sem perder precisão técnica.
-11. Ser técnico, direto e orientado à solução.
-12. Não inventar informações não encontradas no repositório.
-13. Não alterar comportamento funcional sem necessidade.
-14. Não remover código, metadados ou configurações sem validar impacto.
-15. Sempre pensar em governança Salesforce, limites, segurança e deploy seguro.
+Use esta Skill para demandas envolvendo:
+
+- Apex
+- LWC
+- Visualforce
+- Flow
+- Page Layout
+- Lightning Record Page
+- Dynamic Forms
+- Record Type
+- Integrações
+- Testes unitários
+- Refatorações
+- Análise de bugs
+- Flosum
+- DevOps Salesforce
+- Segurança e permissões
+- Documentação técnica e executiva
 
 ---
 
-## 4. Fluxo obrigatório antes de qualquer implementação
+## 2. Modo obrigatório de trabalho
 
-Antes de alterar código, siga obrigatoriamente este fluxo:
+Antes de propor ou implementar qualquer solução:
 
-1. Buscar arquivos relacionados à demanda.
-2. Ler classes Apex, LWCs, testes, objetos, metadados e configurações relacionadas.
-3. Identificar o fluxo atual da solução.
-4. Mapear dependências e efeitos colaterais.
-5. Identificar se já existe padrão semelhante no projeto.
-6. Definir a menor alteração segura.
-7. Só então implementar.
+1. Consultar/criar o índice do projeto.
+2. Consultar e indexar os arquivos relevantes.
+3. Ler classes, testes, LWCs, Flows, metadados e configurações associadas.
+4. Identificar o fluxo real da solução.
+5. Verificar padrões já existentes no repositório.
+6. Definir a menor solução segura.
+7. Só então alterar código, configuração ou propor correção.
 
-Não implemente com base apenas no nome da demanda.
+Nunca assumir nomes de classes, objetos, campos, métodos, RecordTypes, Custom Metadata, Named Credentials, Flows ou layouts sem verificar no projeto.
 
-Sempre que possível, registre rapidamente:
-
-```text
-Arquivos analisados:
-Fluxo identificado:
-Ponto provável de alteração:
-Riscos:
-Testes necessários:
-```
-
-Se não encontrar arquivos suficientes, informe objetivamente:
+Se não houver evidência suficiente, responder de forma objetiva:
 
 ```text
-Não encontrei evidência suficiente no repositório para alterar com segurança.
+Não encontrei evidência suficiente nos arquivos analisados para concluir com segurança.
 
 Arquivos analisados:
 Hipótese mais provável:
@@ -193,60 +99,106 @@ Arquivos que ainda precisam ser validados:
 
 ---
 
-## 5. Indexação e leitura de arquivos
+## 3. Indexação do projeto
 
-Antes de qualquer trabalho técnico, o agente deve consultar, indexar e correlacionar os arquivos relevantes.
+Antes de trabalhar, consultar:
 
-Prioridade de leitura:
+```text
+docs/PROJECT_INDEX.md
+```
 
-1. Classes Apex principais.
-2. Classes de teste relacionadas.
-3. LWCs relacionados.
-4. Objetos, campos e RecordTypes.
-5. Flows, triggers e invocable actions.
-6. Custom Metadata, Named Credentials e Settings.
-7. Manifests, package.xml e configurações de deploy.
-8. README, documentação técnica e padrões existentes.
+Se o arquivo não existir, criar um índice leve do projeto antes de iniciar a análise.
 
-O agente deve procurar padrões existentes antes de criar novos.
+Se existir, validar se está suficiente para a demanda atual e atualizar somente quando necessário.
 
-Nunca assumir:
+O índice deve ser objetivo e não deve copiar código inteiro. O objetivo é economizar tokens e orientar leitura seletiva.
 
-- Nome de classe.
-- Nome de objeto.
-- Nome de campo.
-- Nome de metadado.
-- Nome de método.
-- Nome de RecordType.
-- Fluxo de execução.
-- Comportamento de integração.
+O índice deve mapear:
 
-Se não localizar evidência no projeto, deve informar que a informação não foi encontrada.
+- Estrutura do projeto.
+- Controllers.
+- FlowActions / Invocable Apex.
+- Services.
+- ServiceAgents.
+- Helpers, Selectors e Repositories.
+- DTOs.
+- LWCs.
+- Visualforce.
+- Flows.
+- Objetos, campos e RecordTypes.
+- Page Layouts.
+- Lightning Record Pages.
+- Dynamic Forms.
+- Validation Rules.
+- Permission Sets e Profiles.
+- Custom Metadata.
+- Named Credentials.
+- Classes de teste.
+- Manifests/package.xml.
+- Padrões arquiteturais encontrados.
+- Fluxos técnicos conhecidos.
+
+Após consultar o índice, abrir apenas os arquivos realmente relevantes para a tarefa.
 
 ---
 
-## 6. Padrão arquitetural obrigatório
+## 4. Princípios Triscal
 
-O padrão principal da Triscal para Salesforce é:
+Toda entrega deve ser:
+
+- Pontual.
+- Conclusiva.
+- Técnica.
+- Segura.
+- Aderente ao padrão existente.
+- Econômica em tokens.
+- Sem overengineering.
+- Sem arquitetura nova desnecessária.
+- Com separação clara de responsabilidades.
+- Com testes quando houver alteração de Apex.
+- Com risco e validação indicados.
+- Com análise de impacto declarativo quando envolver Flow, Layout, Record Page ou permissões.
+
+Evitar respostas genéricas, longas ou teóricas quando a demanda pede solução prática.
+
+---
+
+## 5. Arquitetura padrão
+
+Sempre respeitar:
 
 ```text
 LWC / Visualforce / Flow / API
         ↓
-Controller
+Controller / FlowAction
+        ↓
+Service
+        ↓
+ServiceAgent / Helper / Selector
+        ↓
+Sistema externo / SObject / Metadata
+```
+
+Para integração externa:
+
+```text
+LWC / Visualforce / Flow / API
+        ↓
+Controller / FlowAction
         ↓
 Service
         ↓
 ServiceAgent
         ↓
-Sistema externo / Named Credential / API
+Named Credential / Custom Metadata / API externa
 ```
 
-Para regra de negócio e persistência interna:
+Para dados internos:
 
 ```text
 LWC / Visualforce / Flow / API
         ↓
-Controller
+Controller / FlowAction
         ↓
 Service
         ↓
@@ -255,185 +207,129 @@ Selector / Repository / Helper
 SObject / SOQL / DML
 ```
 
-A arquitetura deve ser respeitada mesmo em ajustes pequenos.
+Não misturar responsabilidades entre camadas.
 
-Não criar atalhos como:
+---
+
+## 6. Controller e FlowAction
+
+Controller e FlowAction devem ser finos.
+
+Podem:
+
+- Receber parâmetros.
+- Mapear entrada para DTO.
+- Chamar Service.
+- Retornar DTOs ou respostas simples.
+- Tratar exceções para a camada consumidora.
+- Expor métodos `@AuraEnabled`, REST ou invocáveis.
+
+Não podem:
+
+- Concentrar regra de negócio.
+- Fazer callout.
+- Montar payload externo complexo.
+- Executar DML complexa.
+- Fazer SOQL desnecessário.
+- Decidir regra de integração.
+- Substituir a Service.
+
+Regra:
 
 ```text
-LWC chamando lógica pesada diretamente.
-Controller fazendo regra de negócio.
-Controller fazendo callout.
-ServiceAgent fazendo DML.
-Helper virando classe principal de negócio.
-Teste dependendo de dado real da org.
+Controller/FlowAction recebe, delega e retorna.
+```
+
+Para Flow:
+
+```text
+Flow
+  ↓
+FlowAction / Invocable Apex
+  ↓
+Service
+  ↓
+ServiceAgent / Helper / Selector
 ```
 
 ---
 
-## 7. Controller
+## 7. Service
 
-A Controller deve ser fina.
+A Service concentra a regra de negócio.
 
-Responsabilidades permitidas:
-
-- Receber entrada da camada de apresentação.
-- Validar parâmetros mínimos, quando necessário.
-- Chamar a Service adequada.
-- Retornar DTOs ou respostas simples.
-- Tratar exceções de forma controlada para a camada consumidora.
-- Expor métodos @AuraEnabled, REST ou invocáveis de forma clara.
-
-Responsabilidades proibidas:
-
-- Regra de negócio complexa.
-- Callout HTTP.
-- Montagem de payload externo.
-- DML complexa.
-- SOQL desnecessário.
-- Decisão de integração.
-- Lógica de orquestração pesada.
-- Regras de roteirização, cálculo, validação de processo ou transformação complexa.
-
-Exemplo esperado:
-
-```apex
-public with sharing class MinhaController {
-    @AuraEnabled
-    public static MinhaResponseDTO executar(MinhaRequestDTO request) {
-        try {
-            return MinhaService.executar(request);
-        } catch (Exception ex) {
-            throw new AuraHandledException(MinhaErrorHandler.tratar(ex));
-        }
-    }
-}
-```
-
-A Controller não deve saber como a regra é executada. Ela apenas recebe, delega e retorna.
-
----
-
-## 8. Service
-
-A Service é a principal camada de regra de negócio.
-
-Responsabilidades:
+Deve:
 
 - Orquestrar o processo.
-- Validar regras de negócio.
+- Validar regras.
 - Chamar ServiceAgent quando houver integração.
-- Chamar Selector, Repository ou Helper quando necessário.
-- Executar DML quando aderente ao padrão do projeto.
-- Controlar idempotência.
-- Evitar reprocessamento indevido.
-- Tratar cenários de erro.
-- Produzir respostas estruturadas.
+- Chamar Selector/Repository/Helper quando necessário.
+- Executar DML quando fizer sentido no padrão do projeto.
+- Controlar idempotência e reentrada.
+- Validar estado atual antes de reprocessar registros.
+- Tratar erros de negócio.
 - Ser testável.
-- Centralizar decisões de negócio.
-- Garantir que o processo respeite o estado atual dos registros.
+- Interpretar respostas externas para o contexto de negócio.
 
-A Service não deve virar classe utilitária genérica sem contexto de negócio.
-
-Exemplo conceitual:
-
-```apex
-public with sharing class MinhaService {
-    public static MinhaResponseDTO executar(MinhaRequestDTO request) {
-        validarRequest(request);
-
-        MinhaApiResponseDTO resposta = MinhaServiceAgent.consultar(request);
-
-        Account conta = mapearResposta(resposta);
-
-        update conta;
-
-        return new MinhaResponseDTO(conta.Id, true);
-    }
-}
-```
-
-Quando houver risco de reentrada ou duplicidade, a Service deve validar estado atual antes de executar qualquer ação.
-
----
-
-## 9. ServiceAgent
-
-A ServiceAgent é a camada de integração externa.
-
-Responsabilidades:
-
-- Executar callout.
-- Montar request HTTP.
-- Usar Named Credential.
-- Buscar paths/configurações em Custom Metadata.
-- Serializar request.
-- Desserializar response.
-- Converter payload externo em DTO.
-- Tratar status HTTP, timeout e payload inválido.
-- Isolar detalhes técnicos da API externa.
-
-Responsabilidades proibidas:
-
-- DML.
-- Regra de negócio Salesforce.
-- Dependência de LWC.
-- Decisão de processo.
-- Tratamento visual de erro.
-- Consulta de dados de negócio que não sejam necessários ao callout.
-- Exposição de segredo em log.
-
-Regra obrigatória:
+Regra:
 
 ```text
-Named Credential = endpoint base e autenticação.
-Custom Metadata = paths, flags, parâmetros e configurações variáveis.
-ServiceAgent = execução técnica da integração.
-Service = decisão de negócio sobre a resposta.
-```
-
-Exemplo conceitual:
-
-```apex
-public with sharing class MinhaServiceAgent {
-    public static MinhaApiResponseDTO consultar(MinhaApiRequestDTO requestDTO) {
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint('callout:MinhaNamedCredential' + MinhaSettingUtils.getPathConsulta());
-        req.setMethod('POST');
-        req.setHeader('Content-Type', 'application/json');
-        req.setBody(JSON.serialize(requestDTO));
-
-        HttpResponse res = new Http().send(req);
-
-        if (res.getStatusCode() < 200 || res.getStatusCode() >= 300) {
-            throw new MinhaIntegracaoException('Erro na integração. Status: ' + res.getStatusCode());
-        }
-
-        return (MinhaApiResponseDTO) JSON.deserialize(res.getBody(), MinhaApiResponseDTO.class);
-    }
-}
+A decisão de negócio fica na Service.
 ```
 
 ---
 
-## 10. DTOs
+## 8. ServiceAgent
 
-Use DTOs sempre que houver estrutura conhecida de entrada ou saída.
+A ServiceAgent concentra integração externa.
 
-Aplicar DTOs para:
+Deve:
 
-- Request de LWC.
-- Response para LWC.
+- Executar callout.
+- Usar Named Credential.
+- Buscar paths/configurações em Custom Metadata.
+- Montar request HTTP.
+- Serializar request.
+- Desserializar response.
+- Tratar status HTTP, timeout, body vazio e payload inválido.
+- Converter payload externo em DTO.
+
+Não deve:
+
+- Executar DML.
+- Conter regra de negócio Salesforce.
+- Conhecer LWC, Flow ou tela.
+- Expor segredo em log.
+- Decidir fluxo de negócio.
+
+Regra:
+
+```text
+Named Credential = endpoint base/autenticação.
+Custom Metadata = path, flags e parâmetros.
+ServiceAgent = chamada técnica.
+Service = decisão de negócio.
+```
+
+---
+
+## 9. DTOs
+
+Usar DTOs quando a estrutura for conhecida.
+
+Aplicar em:
+
+- Request de tela.
+- Response para tela.
 - Payload de API.
 - Response de API.
-- Retorno de Service.
-- Mensagens de erro estruturadas.
 - Invocable Apex.
 - REST Apex.
-- Transformações entre camadas.
+- Mensagens de erro estruturadas.
 
-Evite Map<String, Object> quando o payload for conhecido.
+Evitar `Map<String, Object>` quando for possível ter DTO tipado.
 
-Padrão de nomes:
+Padrões de nome:
 
 ```text
 MinhaRequestDTO
@@ -441,180 +337,116 @@ MinhaResponseDTO
 MinhaApiRequestDTO
 MinhaApiResponseDTO
 MinhaErrorDTO
-MinhaItemDTO
 ```
 
-DTOs devem ser simples, legíveis e sem regra de negócio pesada.
-
-Não usar DTO como classe Deus.
+DTO não deve virar classe de regra de negócio.
 
 ---
 
-## 11. SOQL, DML e limites Salesforce
+## 10. SOQL, DML e limites
 
 Regras obrigatórias:
 
-- Não fazer SOQL dentro de loop.
-- Não fazer DML dentro de loop.
+- Não fazer SOQL em loop.
+- Não fazer DML em loop.
 - Consultar apenas campos necessários.
-- Usar filtros seletivos sempre que possível.
-- Bulkificar métodos que possam receber listas.
-- Usar Schema.describe quando for melhor que SOQL.
-- Preferir buscar RecordType via describe quando aplicável.
-- Reduzir consultas redundantes.
-- Reutilizar dados já carregados quando seguro.
-- Respeitar limites de governor.
+- Bulkificar métodos sempre que aplicável.
+- Usar filtros seletivos.
+- Usar `Schema.describe` quando for melhor que SOQL.
+- Preferir RecordType via describe quando aplicável.
+- Evitar queries redundantes.
+- Respeitar governor limits.
 - Evitar query dinâmica sem necessidade.
 - Proteger query dinâmica contra parâmetros inseguros.
 
-Quando houver grande volume, considerar:
+Para alto volume, considerar:
 
 - Batch Apex.
 - Queueable.
 - Platform Event.
 - Objeto de fila.
 - Controle de status.
-- Reprocessamento idempotente.
-- Logs técnicos.
 - Retry controlado.
-- Processamento assíncrono.
-
-Quando consultar RecordType, preferir:
-
-```apex
-Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('NomeRecordType').getRecordTypeId();
-```
-
-Em vez de SOQL desnecessário.
+- Idempotência.
+- Logs técnicos.
 
 ---
 
-## 12. Automação, reentrada e idempotência
+## 11. Automação, reentrada e idempotência
 
 Sempre avaliar risco de:
 
-- Recursão.
-- Reentrada.
 - Trigger chamando Flow.
 - Flow chamando Apex.
+- Batch gerando Batch.
+- Queueable encadeado indevidamente.
 - Atualização que dispara nova automação.
-- Batch gerando novo batch.
-- Queueable encadeando indevidamente.
 - Integração recebendo retorno duplicado.
-- Status operacional reabrindo processo já concluído.
-- Atualização de campo que dispara regra sem mudança real.
+- Status operacional reabrindo processo encerrado.
+- Registro sendo roteirizado/reprocessado sem validar estado atual.
 
-Quando houver risco, implementar travas como:
+Quando houver risco, aplicar travas:
 
 - Validação de status atual.
-- Flag de processamento.
-- Controle por chave externa.
-- Histórico de execução.
 - Verificação de mudança real de campo.
+- Flag de processamento.
+- Controle de origem.
+- Chave funcional de idempotência.
+- Histórico de execução.
 - Bloqueio por estado final.
-- Controle de fila.
 - Controle de tentativa.
-- Controle de origem da atualização.
-- Idempotência por chave funcional.
 
-Nunca reagendar, reenfileirar, reintegrar ou reprocessar um registro sem validar o estado atual.
-
-Exemplo de raciocínio esperado:
-
-```text
-Antes de executar a ação, validar se o registro ainda está em status elegível.
-Se já estiver em atendimento, concluído, cancelado ou em estado incompatível, não reprocessar.
-```
+Nunca reprocessar, reenfileirar, reagendar ou reintegrar sem validar se o registro ainda é elegível.
 
 ---
 
-## 13. LWC
+## 12. LWC
 
-Para Lightning Web Components:
+Para LWC:
 
 - Usar SLDS.
-- Entregar UI enterprise, limpa e responsiva.
-- Separar estado, chamada Apex e renderização.
-- Não colocar regra de negócio pesada no JavaScript.
-- Apex deve concentrar regra.
+- Construir UI limpa, enterprise e responsiva.
+- JS controla estado, eventos e chamadas Apex.
+- HTML cuida da estrutura visual.
+- Apex cuida da regra.
 - Usar loading state.
 - Usar empty state.
 - Usar error state.
 - Usar feedback de sucesso.
-- Evitar hardcode de textos quando houver Custom Labels.
-- Não expor IDs técnicos quando houver nomes amigáveis.
-- Usar componentes claros e de fácil manutenção.
-- Evitar duplicação de lógica no JavaScript.
-- Manter HTML legível.
-- Manter JS organizado por responsabilidade.
-- Usar nomes claros para handlers.
+- Não colocar regra pesada no JavaScript.
+- Evitar hardcode quando houver Custom Labels.
+- Exibir nomes amigáveis em vez de IDs técnicos.
 
-Padrão esperado:
-
-```text
-HTML = estrutura visual.
-JS = estado, eventos e chamada Apex.
-Apex Controller = entrada e saída.
-Service = regra de negócio.
-```
-
-Para telas administrativas ou enterprise:
+Para telas administrativas:
 
 - Listagem com paginação.
-- Filtros claros.
-- Busca quando aplicável.
+- Busca e filtros quando aplicável.
 - Modal para criar/editar.
 - Modal de confirmação para excluir.
 - Ações com ícones quando fizer sentido.
-- Feedback visual claro.
-- Exibição de nomes amigáveis em vez de IDs.
-- Responsividade para desktop e mobile quando aplicável.
+- Layout enterprise.
 
 ---
 
-## 14. Apex Tests
+## 13. Apex Tests
 
 Sempre que alterar Apex:
 
-- Criar ou atualizar teste unitário.
+- Criar ou atualizar teste.
 - Não depender de dados reais da org.
-- Criar massa de dados própria.
+- Criar massa própria.
 - Usar mocks para callout.
-- Usar Test.startTest() e Test.stopTest().
-- Usar Assert.areEqual, Assert.areNotEqual, Assert.isTrue, etc.
-- Evitar System.assertEquals.
-- Usar Test.setCreatedDate() quando precisar controlar CreatedDate.
+- Usar `Test.startTest()` e `Test.stopTest()`.
+- Usar `Assert.areEqual`, `Assert.areNotEqual`, `Assert.isTrue`, etc.
+- Evitar `System.assertEquals`.
+- Usar `Test.setCreatedDate()` quando precisar manipular `CreatedDate`.
 - Testar cenário positivo.
 - Testar cenário negativo.
-- Testar exceção ou validação relevante.
-- Testar bulk quando o método aceitar múltiplos registros.
+- Testar exceção relevante.
+- Testar bulk quando aplicável.
 - Validar comportamento, não apenas cobertura.
-- Manter testes legíveis e com nomes claros.
-- Evitar massa de dados excessiva.
-- Centralizar mocks quando o projeto já tiver classe de mock data.
 
-Padrão:
-
-```apex
-@IsTest
-private class MinhaServiceTest {
-    @IsTest
-    static void deveExecutarComSucesso() {
-        // Arrange
-
-        Test.startTest();
-        // Act
-        Test.stopTest();
-
-        // Assert
-        Assert.areEqual(valorEsperado, valorAtual, 'Deve retornar o valor esperado.');
-    }
-}
-```
-
-Não criar teste apenas para cobertura. O teste deve validar comportamento real.
-
-Nomes de testes devem indicar intenção:
+Nomes de teste devem indicar intenção:
 
 ```text
 deveExecutarComSucesso
@@ -626,7 +458,7 @@ deveProcessarListaEmBulk
 
 ---
 
-## 15. Integrações
+## 14. Integrações
 
 Toda integração deve seguir:
 
@@ -639,49 +471,43 @@ Regras:
 - Não hardcodar endpoint.
 - Não hardcodar token.
 - Não hardcodar API key.
-- Não hardcodar path.
 - Não expor segredo em log.
-- Tratar status HTTP.
+- Tratar HTTP status.
 - Tratar timeout.
 - Tratar response vazio.
 - Tratar JSON inválido.
-- Tratar campos ausentes.
 - Criar mock de callout.
-- Registrar log técnico se existir padrão no projeto.
-- Retornar erro de negócio compreensível para a camada superior.
-- Preservar o payload técnico apenas em log seguro, quando aplicável.
+- Reutilizar utilitários existentes de metadata/configuração.
+- Registrar log técnico conforme padrão existente.
 
-Se houver classe utilitária de metadados no projeto, reutilizar. Não criar outra sem necessidade.
-
-Exemplo de separação correta:
+Separação esperada:
 
 ```text
 Service:
-- Decide se deve chamar a integração.
+- Decide se deve integrar.
 - Interpreta resposta para o negócio.
 - Atualiza registros.
 
 ServiceAgent:
-- Chama API.
-- Trata protocolo HTTP.
+- Executa chamada HTTP.
+- Trata protocolo.
 - Desserializa payload.
 ```
 
 ---
 
-## 16. Logs e tratamento de erros
+## 15. Logs e erros
 
 Quando houver erro:
 
 - Diferenciar erro técnico de erro de negócio.
 - Não expor stack trace para usuário final.
-- Registrar detalhe técnico quando houver LogService ou padrão existente.
+- Registrar detalhe técnico em LogService ou padrão existente.
+- Não usar `System.debug` como estratégia principal de log.
+- Não engolir exceção sem ação útil.
 - Retornar mensagem clara para LWC, Flow ou API.
-- Não engolir exceção silenciosamente.
-- Não usar System.debug como estratégia principal de log.
-- Preservar rastreabilidade do processo.
 
-Formato recomendado para análise de erro:
+Formato esperado em análise:
 
 ```text
 Causa identificada:
@@ -691,53 +517,23 @@ Correção proposta:
 Teste necessário:
 ```
 
-Quando implementar tratamento:
-
-```apex
-try {
-    // execução
-} catch (MinhaBusinessException ex) {
-    // erro de negócio
-} catch (Exception ex) {
-    // erro técnico controlado
-}
-```
-
-Evitar capturar Exception sem ação útil.
-
 ---
 
-## 17. Flosum e DevOps
+## 16. Flosum e DevOps Salesforce
 
-Quando a demanda envolver Flosum, deploy ou governança:
+Quando envolver Flosum/deploy:
 
 - Preservar rastreabilidade.
 - Identificar branch, pacote, ambiente e metadados impactados.
+- Considerar UAT, SIT, QA, Hotfix e Produção.
 - Validar dependências.
-- Considerar UAT, SIT, QA, Hotfix e Produção conforme contexto.
-- Não remover metadados sem confirmar impacto.
-- Considerar testes unitários obrigatórios para deploy.
-- Avaliar rollback quando houver risco.
-- Ser claro sobre o que muda em cada ambiente.
-- Considerar backpromotion quando aplicável.
-- Evitar alteração manual sem rastreabilidade.
-- Considerar impacto de permissões, profiles e permission sets.
-- Considerar dependências de RecordTypes, Layouts, Flows, Classes, LWCs e Custom Metadata.
+- Considerar testes unitários obrigatórios.
+- Avaliar risco de rollback.
+- Considerar backpromotion.
+- Não remover metadados sem validar impacto.
+- Separar erro de deploy, validação, status, dependência, permissão, metadado, teste e versão/API.
 
-Ao explicar uma falha de deploy, separar:
-
-```text
-Erro de deploy:
-Erro de validação:
-Erro de consulta de status:
-Erro de dependência:
-Erro de permissão:
-Erro de metadado:
-Erro de teste:
-Erro de versão/API:
-```
-
-Em projetos com Flosum, considerar:
+Conceitos importantes:
 
 ```text
 Branch
@@ -754,11 +550,11 @@ Backpromotion
 
 ---
 
-## 18. Análise de bugs
+## 17. Análise de bugs
 
-Para bug, a resposta deve ser investigativa e conclusiva.
+Para bug, responder com diagnóstico conclusivo.
 
-Formato esperado:
+Formato preferido:
 
 ```text
 Causa identificada:
@@ -770,52 +566,44 @@ Risco da correção:
 Teste necessário:
 ```
 
-Evite respostas genéricas como:
+Evitar:
 
 ```text
-Pode ser problema de permissão.
 Pode ser trigger.
-Verifique o log.
+Pode ser permissão.
+Verifique os logs.
 ```
 
-Prefira respostas diretas e técnicas:
+Preferir apontar causa provável com evidência dos arquivos analisados.
 
-```text
-O problema ocorre porque a alteração de status do ServiceAppointment reaciona a automação de roteirização sem validar se a vistoria já foi assumida pelo inspetor. A correção deve bloquear a reentrada quando o atendimento já estiver em estado operacional incompatível com nova roteirização.
-```
-
-Ao investigar bug, verificar:
+Sempre verificar:
 
 - Trigger.
 - Flow.
-- Process Builder legado.
-- Apex chamado por Flow.
+- Apex invocável.
 - Batch.
 - Queueable.
 - Schedule.
 - Integração.
 - Atualização indireta de status.
-- Campo usado como critério de automação.
+- Critérios de entrada.
 - Ausência de idempotência.
-- Ausência de validação de estado atual.
+- Ausência de validação do estado atual.
 
 ---
 
-## 19. Refatoração
+## 18. Refatoração
 
 Ao refatorar:
 
 - Preservar comportamento.
 - Reduzir duplicação.
-- Melhorar separação de responsabilidades.
-- Manter contratos públicos quando possível.
-- Não alterar assinatura sem necessidade.
+- Melhorar responsabilidade das classes.
+- Não alterar contrato público sem necessidade.
 - Não quebrar testes existentes.
-- Não transformar Service em classe Deus.
-- Não colocar lógica na Controller.
+- Não mover regra para Controller.
 - Não mover callout para fora da ServiceAgent.
 - Atualizar testes impactados.
-- Refatorar em passos pequenos e seguros.
 - Evitar reescrita total quando ajuste pontual resolve.
 
 Antes de refatorar, identificar:
@@ -828,13 +616,31 @@ Risco:
 Como validar:
 ```
 
-Refatoração sem teste é risco. Se não houver teste, sugerir ou criar teste antes/depois conforme viabilidade.
+---
+
+## 19. Segurança
+
+Sempre considerar:
+
+- CRUD/FLS.
+- Sharing model.
+- `with sharing`, `without sharing` ou `inherited sharing`.
+- Permission Sets.
+- Dados sensíveis.
+- LGPD.
+- Segredos em Named Credentials.
+- Custom Metadata apenas para configuração, não segredo sensível.
+- Validação de entrada.
+- Proteção de métodos `@AuraEnabled`.
+- Logs sem dados confidenciais.
+
+Não expor segredo, token, senha, API key ou stack trace para usuário final.
 
 ---
 
-## 20. Documentação técnica
+## 20. Documentação
 
-Quando solicitado documentação, usar estrutura clara:
+Quando solicitado documento técnico, usar:
 
 ```text
 1. Contexto
@@ -850,7 +656,7 @@ Quando solicitado documentação, usar estrutura clara:
 11. Próximos passos
 ```
 
-Para documentação executiva, usar:
+Quando solicitado resumo executivo:
 
 ```text
 1. Contexto
@@ -861,202 +667,26 @@ Para documentação executiva, usar:
 6. Próximos passos
 ```
 
-Para documentação de código Apex:
-
-```text
-1. Classe
-2. Responsabilidade
-3. Métodos principais
-4. Fluxo de execução
-5. Objetos envolvidos
-6. Integrações envolvidas
-7. Pontos de atenção
-8. Testes relacionados
-```
-
 ---
 
-## 21. Segurança
+## 21. Economia de tokens
 
-Sempre considerar:
-
-- CRUD/FLS quando exposto para usuário.
-- Sharing model.
-- with sharing, without sharing ou inherited sharing.
-- Exposição de dados sensíveis.
-- Logs com informações confidenciais.
-- Named Credentials para segredos.
-- Permission Sets para acesso.
-- Custom Metadata para configuração, não para segredo sensível.
-- Validação de entrada.
-- Proteção contra uso indevido de métodos @AuraEnabled.
-- Restrição de acesso em LWC.
-- Campos sensíveis em tela.
-- Dados pessoais e LGPD.
-- Escopo de permissão mínimo necessário.
-
-Não expor stack trace para usuário final.
-
-Não gravar token, senha, API key ou segredo em Custom Metadata, Custom Settings, logs ou código.
-
----
-
-## 22. Performance
-
-Sempre avaliar:
-
-- Número de queries.
-- Número de DMLs.
-- Loops com processamento pesado.
-- Serialização/desserialização grande.
-- Chamadas HTTP em massa.
-- Tamanho de payload.
-- View state em Visualforce.
-- Renderização excessiva em LWC.
-- Necessidade de cache.
-- Processamento assíncrono.
-- Seletividade de filtros.
-- Volume de registros.
-
-Quando houver volume alto:
-
-```text
-Avaliar Batch, Queueable, Platform Event, objeto de fila, paginação ou processamento incremental.
-```
-
----
-
-## 23. Custom Metadata, Custom Settings e Named Credentials
-
-Usar corretamente:
-
-```text
-Named Credential:
-- Endpoint base.
-- Autenticação.
-- Segredos.
-- Tokens via mecanismo seguro.
-
-Custom Metadata:
-- Paths.
-- Flags.
-- Parâmetros funcionais.
-- Mapeamentos.
-- Configurações versionáveis.
-
-Custom Settings:
-- Evitar para novas configurações quando Custom Metadata atender melhor.
-- Usar somente se o padrão existente justificar.
-```
-
-Não usar Custom Metadata como cofre de segredo sensível.
-
-Se o projeto já tiver classe utilitária de metadados, reutilizar.
-
----
-
-## 24. Flow, Trigger e Invocable Apex
-
-Quando lidar com Flow ou Trigger:
-
-- Identificar se é Before ou After.
-- Verificar se há Factory de roteamento por RecordType.
-- Evitar lógica duplicada entre Flow e Apex.
-- Garantir que Apex invocável seja bulkificado.
-- Não assumir que Flow executa uma única vez.
-- Avaliar reentrada.
-- Avaliar critérios de entrada.
-- Avaliar campos realmente alterados.
-- Avaliar impacto de update em cascata.
-
-Para Invocable Apex:
-
-```text
-FlowAction → Service → ServiceAgent/Helper
-```
-
-O FlowAction deve apenas:
-
-- Receber entrada do Flow.
-- Mapear dados.
-- Chamar Service.
-- Retornar output.
-
-O FlowAction não deve concentrar regra de negócio.
-
----
-
-## 25. Visualforce
-
-Quando houver Visualforce:
-
-- Manter controller limpo.
-- Evitar lógica pesada na página.
-- Cuidar de renderização PDF quando aplicável.
-- Validar queries e limites.
-- Evitar view state desnecessário.
-- Centralizar regra em Service quando possível.
-- Manter HTML/CSS organizado.
-- Não misturar regra de negócio com markup.
-
----
-
-## 26. Salesforce Files e Attachments
-
-Quando lidar com arquivos:
-
-- Preferir Salesforce Files quando aplicável.
-- Entender diferença entre ContentDocument, ContentVersion e ContentDocumentLink.
-- Não consultar Blob sem necessidade.
-- Cuidar de limites de heap.
-- Evitar carregar arquivos grandes em memória.
-- Usar processamento assíncrono quando necessário.
-- Controlar vínculo com registros.
-- Cuidar de permissões de acesso aos arquivos.
-
----
-
-## 27. Código legado
-
-Ao encontrar código legado:
-
-- Não reescrever tudo sem necessidade.
-- Identificar comportamento atual.
-- Criar melhoria incremental.
-- Preservar compatibilidade.
-- Adicionar teste quando possível.
-- Documentar risco técnico quando existir.
-- Não julgar código legado sem propor caminho seguro.
-
-Formato recomendado:
-
-```text
-Código atual funciona, mas concentra responsabilidade em X.
-Ajuste recomendado: mover Y para Service, mantendo contrato atual.
-Risco: baixo/médio/alto.
-Validação: teste Z.
-```
-
----
-
-## 28. Padrão de resposta com economia de tokens
-
-Responder de forma objetiva.
+Responder sempre com foco.
 
 Evitar:
 
 - Teoria desnecessária.
-- Explicação longa de conceitos básicos.
-- Repetir o pedido do usuário.
-- Criar muitas alternativas quando uma solução é claramente melhor.
-- Código gigante quando um diff pontual resolve.
-- Respostas vagas.
+- Repetição do pedido.
 - Introduções longas.
+- Muitas alternativas quando uma solução é claramente melhor.
+- Código enorme quando diff ou trecho pontual resolve.
+- Explicações genéricas.
 
 Preferir:
 
 ```text
-Identifiquei o ponto.
+Conclusão:
+...
 
 Causa:
 ...
@@ -1071,92 +701,11 @@ Teste:
 ...
 ```
 
-Quando implementar, informar apenas:
-
-```text
-Alterado:
-- Classe X: ajuste Y.
-- Teste Z: cenário W.
-
-Validação:
-- Teste unitário atualizado.
-- Sem mudança de contrato público.
-```
-
-Quando for análise:
-
-```text
-Conclusão:
-...
-
-Evidência:
-...
-
-Ação recomendada:
-...
-```
-
 ---
 
-## 29. Quando não tiver certeza
+## 22. Formato final esperado
 
-Não inventar.
-
-Se faltar evidência:
-
-```text
-Não dá para concluir com segurança apenas com os arquivos atuais.
-
-O que foi validado:
-...
-
-Hipótese mais provável:
-...
-
-Próxima validação necessária:
-...
-```
-
-Se houver risco de quebrar produção:
-
-```text
-A alteração é possível, mas tem risco porque impacta:
-...
-
-Recomendo validar:
-...
-```
-
-Se uma informação não estiver no repositório, diga claramente que não foi encontrada.
-
----
-
-## 30. Critério de aceite geral
-
-Uma entrega só é aceita quando:
-
-- Arquivos relevantes foram analisados.
-- A solução respeita o padrão do projeto.
-- Controller permanece fina.
-- Service concentra regra de negócio.
-- ServiceAgent concentra integração.
-- Não há SOQL/DML indevido em loop.
-- Não há hardcode de endpoint, token ou segredo.
-- Testes foram criados ou ajustados quando necessário.
-- A solução é pontual e segura.
-- A resposta é conclusiva.
-- O código é legível e sustentável.
-- Não há alteração desnecessária de arquitetura.
-- Não há quebra de contrato público sem justificativa.
-- Não há exposição indevida de dados sensíveis.
-- O risco foi considerado.
-- A validação foi indicada.
-
----
-
-## 31. Formato final esperado para entregas técnicas
-
-Ao finalizar uma análise ou implementação, responder preferencialmente neste formato:
+Para análise ou implementação, responder preferencialmente:
 
 ```text
 Conclusão:
@@ -1178,7 +727,7 @@ Próximo passo:
 ...
 ```
 
-Se for uma correção simples, pode usar formato reduzido:
+Para correção simples:
 
 ```text
 Causa:
@@ -1193,35 +742,29 @@ Teste:
 
 ---
 
-## 32. Regra final
+## 23. Critérios de aceite gerais
 
-Antes de qualquer resposta técnica, pense:
+A entrega só é boa quando:
 
-```text
-Eu li os arquivos certos?
-Estou respeitando Controller > Service > ServiceAgent?
-Estou sendo pontual?
-Estou evitando overengineering?
-Estou protegendo o projeto contra regressão?
-Estou entregando uma conclusão clara?
-```
-
-Se a resposta for não, volte para a análise antes de implementar.
-
-## 33. Skills locais do projeto
-
-Este projeto possui uma Skill local em:
-
-skills/triscal-salesforce/SKILL.md
-
-Sempre que a tarefa envolver Apex, LWC, Flow, Visualforce, integrações, testes, Flosum, deploy, análise de bug ou documentação técnica Salesforce, leia e aplique esta Skill antes de propor ou implementar qualquer alteração.
-
-A Skill local complementa este AGENTS.md e deve ser usada como padrão de execução técnico do projeto.
+- Arquivos relevantes foram analisados.
+- A solução é pontual.
+- A resposta é conclusiva.
+- O padrão Controller/FlowAction > Service > ServiceAgent foi respeitado.
+- A Controller continua fina.
+- A FlowAction continua fina.
+- A Service concentra regra de negócio.
+- A ServiceAgent concentra integração.
+- Não há SOQL/DML indevido em loop.
+- Não há Get/DML indevido dentro de Loop em Flow.
+- Não há hardcode de endpoint, token ou segredo.
+- Testes foram criados ou ajustados quando necessário.
+- Não há overengineering.
+- Não há quebra de contrato sem justificativa.
+- Risco e validação foram indicados.
+- O código/configuração é legível, sustentável e aderente ao projeto.
 
 
----
-
-## 34. Salesforce Declarativo: Flow, Layouts, Record Pages e Configuração
+## 24. Salesforce Declarativo: Flow, Layouts, Record Pages e Configuração
 
 O agente deve ser completo em Salesforce, não limitado a Apex e LWC. Sempre que a demanda envolver automação, experiência de usuário, layout, permissões ou configuração declarativa, o agente deve analisar também:
 
@@ -1255,7 +798,7 @@ O agente deve avaliar o impacto declarativo antes de propor Apex. Nem toda deman
 
 ---
 
-## 35. Boas práticas obrigatórias para Flow
+## Boas práticas obrigatórias para Flow
 
 Antes de criar ou alterar Flow, o agente deve:
 
@@ -1322,7 +865,7 @@ Se um Flow estiver fazendo DML ou Get dentro de Loop, o agente deve apontar como
 
 ---
 
-## 36. Padrão de análise para Flow
+## Padrão de análise para Flow
 
 Quando analisar um Flow, responder com:
 
@@ -1362,7 +905,7 @@ Para bug em Flow, verificar:
 
 ---
 
-## 37. Invocable Apex chamado por Flow
+## Invocable Apex chamado por Flow
 
 Quando Flow chamar Apex, aplicar o padrão:
 
@@ -1393,7 +936,7 @@ A Service continua sendo a camada de regra de negócio.
 
 ---
 
-## 38. Page Layout, Lightning Record Page e Dynamic Forms
+## Page Layout, Lightning Record Page e Dynamic Forms
 
 O agente deve saber analisar e propor ajustes em experiência declarativa de tela.
 
@@ -1424,7 +967,7 @@ Antes de alterar layout, verificar:
 
 ---
 
-## 39. Boas práticas para Page Layout
+## Boas práticas para Page Layout
 
 Regras:
 
@@ -1452,7 +995,7 @@ Quando houver Dynamic Forms:
 
 ---
 
-## 40. Boas práticas para Lightning Record Page
+## Boas práticas para Lightning Record Page
 
 Regras:
 
@@ -1484,7 +1027,7 @@ Validação:
 
 ---
 
-## 41. Record Types
+## Record Types
 
 Ao trabalhar com RecordType:
 
@@ -1500,7 +1043,7 @@ Ao trabalhar com RecordType:
 
 ---
 
-## 42. Validation Rules
+## Validation Rules
 
 Ao criar ou alterar Validation Rule:
 
@@ -1515,7 +1058,7 @@ Ao criar ou alterar Validation Rule:
 
 ---
 
-## 43. Permissões, Profiles e Permission Sets
+## Permissões, Profiles e Permission Sets
 
 Antes de concluir demanda de tela, Flow ou campo:
 
@@ -1532,7 +1075,7 @@ Nunca assumir que adicionar campo no layout garante acesso. Segurança deve ser 
 
 ---
 
-## 44. Critério de aceite para configuração declarativa
+## Critério de aceite para configuração declarativa
 
 Uma entrega declarativa só é aceita quando:
 
@@ -3152,3 +2695,6 @@ Uma entrega de construção Salesforce só é aceita quando:
 - Não há IDs hardcoded.
 - Apex novo/alterado possui teste com objetivo mínimo de 95% de cobertura.
 - LWC foi usado apenas quando configuração, Dynamic Forms, App Builder ou Flow não atendem.
+- Comentários foram usados para explicar regras, decisões, pendências e contexto relevante.
+- Não há código morto ou comentado sem justificativa.
+- Não há exposição de dados sensíveis em mensagens de erro ou comentários.
