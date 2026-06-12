@@ -246,4 +246,6 @@ Uma contribuição neste repositório deve:
 
 ## Licenciamento e origem de conteúdos
 
-Este repositório combina instruções internas Triscal com uma biblioteca local `sf-skills`. Antes de publicar em um Git remoto, valide licenças, créditos e permissões de redistribuição dos conteúdos importados em `agents/skills/sf-skills/`.
+Este repositório é de uso restrito a consultores autorizados e projetos da Triscal. Consulte `LICENSE.md`.
+
+O projeto combina instruções internas Triscal com uma biblioteca local `sf-skills`. Conteúdos de terceiros mantêm suas próprias licenças, créditos e restrições. Antes de publicar em um Git remoto, valide permissões de redistribuição dos conteúdos importados em `agents/skills/sf-skills/`.
