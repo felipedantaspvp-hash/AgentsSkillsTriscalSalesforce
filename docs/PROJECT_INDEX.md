@@ -1,26 +1,98 @@
-# PROJECT_INDEX
+# PROJECT_INDEX.md — Índice técnico leve do projeto
 
-## Estrutura de pastas
-- `AGENTS.md`
-- `agents/skills/triscal-salesforce/SKILL.md`
-- `docs/PROJECT_INDEX.md`
+> Não copie código inteiro neste arquivo.  
+> Use apenas referências para orientar leitura seletiva e economizar tokens.
 
-## Componentes principais
-- Controllers: não encontrado
-- Services: não encontrado
-- ServiceAgents: não encontrado
-- DTOs: não encontrado
-- LWCs: não encontrado
-- Classes de teste: não encontrado
-- Objetos/campos Salesforce: não encontrado
-- Flows/automações: não encontrado
-- Custom Metadata: não encontrado
-- Named Credentials: não encontrado
-- Manifest/package.xml: não encontrado
+## Última atualização
 
-## Padrões arquiteturais encontrados
-- Padrão documental Triscal em `AGENTS.md`
-- Skill técnica Triscal em `agents/skills/triscal-salesforce/SKILL.md`
+- Data:
+- Responsável:
+- Observação:
 
-## Fluxos técnicos conhecidos
-- Este repositório atua como base de instruções/templates (AGENTS + SKILL), sem código Salesforce executável.
+---
+
+## Estrutura principal
+
+```text
+force-app/
+manifest/
+```
+
+---
+
+## Arquitetura identificada
+
+```text
+LWC / Visualforce / Flow / API
+        ↓
+Controller / FlowAction
+        ↓
+Service
+        ↓
+ServiceAgent / Helper / Selector
+        ↓
+Sistema externo / SObject / Metadata
+```
+
+---
+
+## Controllers / FlowActions
+
+| Artefato | Caminho | Responsabilidade | Chama |
+|---|---|---|---|
+
+## Services
+
+| Artefato | Caminho | Responsabilidade | Chamado por |
+|---|---|---|---|
+
+## ServiceAgents / Integrações
+
+| Artefato | Caminho | API/Sistema | Named Credential | Custom Metadata |
+|---|---|---|---|---|
+
+## DTOs / Wrappers
+
+| Artefato | Caminho | Uso |
+|---|---|---|
+
+## LWCs
+
+| Componente | Caminho | Apex usado | Responsabilidade |
+|---|---|---|---|
+
+## Flows
+
+| Flow | Caminho | Objeto | Tipo | Before/After | Observação |
+|---|---|---|---|---|---|
+
+## Objetos / Campos relevantes
+
+| Objeto | Campo/Metadata | Caminho | Uso |
+|---|---|---|---|
+
+## Layouts / FlexiPages
+
+| Artefato | Caminho | Objeto | Ativação/uso |
+|---|---|---|---|
+
+## Permission Sets / Profiles
+
+| Artefato | Caminho | Finalidade |
+|---|---|---|
+
+## Testes
+
+| Classe de teste | Caminho | Cobre |
+|---|---|---|
+
+## Fluxos técnicos principais
+
+### Fluxo 1
+
+```text
+Entrada:
+Camadas:
+Saída:
+Riscos:
+```
