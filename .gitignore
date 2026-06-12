@@ -1,0 +1,15 @@
+# Salesforce local state
+.sfdx/
+.sf/
+
+# OS files
+.DS_Store
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Node dependencies and generated output
+node_modules/
+coverage/
+dist/
